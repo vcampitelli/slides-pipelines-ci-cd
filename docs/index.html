@@ -457,24 +457,58 @@
                     <section>
                         <h1 class="subtitle">GitHub Actions</h1>
                         <h2>Conceito</h2>
-                        https://docs.github.com/en/actions
-                    </section>
-                    <section>
-                        <h1 class="subtitle">GitHub Actions</h1>
-                        <h2>Histórico</h2>
-                    </section>
-                    <section data-auto-animate data-auto-animate-restart>
-                        <h1 class="subtitle">GitHub Actions</h1>
-                        <h2>Sintaxe</h2>
-                        <a href="https://docs.github.com/pt/actions/using-workflows/workflow-syntax-for-github-actions"
-                           rel="noopener" target="_blank" class="reference" data-id="reference">
-                            Sintaxe de fluxo de trabalho para o GitHub Actions
+                        <blockquote>
+                            Automatize, personalize e execute seus fluxos de trabalho de desenvolvimento do software
+                            diretamente no seu repositório com o GitHub Actions. Você pode descobrir, criar e
+                            compartilhar ações para realizar qualquer trabalho que desejar, incluindo CI/CD, bem como
+                            combinar ações em um fluxo de trabalho completamente personalizado.
+                        </blockquote>
+                        <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">
+                            Documentação do GitHub Actions
                         </a>
                     </section>
                     <section data-auto-animate>
                         <h1 class="subtitle">GitHub Actions</h1>
                         <h2>Sintaxe</h2>
-                        <pre data-id="pre"><code class="yaml" data-trim data-line-numbers>
+                        <p>
+                            Um <b>Fluxo de trabalho</b> <em>("workflow")</em> é configurado através de um arquivo
+                            <a href="https://yaml.org/" target="_blank" rel="noopener">YAML</a> na pasta
+                            <code>.github/workflows</code> do seu repositório
+                        </p>
+                        <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">
+                            Documentação do GitHub Actions
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="subtitle">GitHub Actions</h1>
+                        <h2>Sintaxe</h2>
+                        <p>
+                            Cada <b>Fluxo</b> é composto por:
+                        </p>
+                        <ul>
+                            <li>
+                                Gatilhos <em>("triggers")</em> responsáveis por dispará-lo, como <em>push</em> em alguma
+                                <em>branch</em>, <em>pull request</em> aberta, <em>issue</em> criada, sistema de
+                                agendamento <em>(como o "cron")</em>, entre outros
+                            </li>
+                            <li>
+                                <em>Jobs</em> que podem ser executados de maneira sequencial ou em paralelo entre si,
+                                que serão executados em <em>runners</em> (geralmente um <em>container</em>)
+                            </li>
+                            <li>
+                                Os <em>Jobs</em> são compostos de etapas <em>("steps")</em> para executar
+                                <em>scripts</em> definidos por você ou ações de terceiros (que são disponibilizadas como
+                                pacotes)
+                            </li>
+                        </ul>
+                        <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">
+                            Documentação do GitHub Actions
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="subtitle">GitHub Actions</h1>
+                        <h2>Sintaxe</h2>
+                        <pre data-id="pre"><code class="yaml" data-trim data-line-numbers="1|3-7|9|9-12|9-20|9-26|28-32|28-39">
                             name: Backend
 
                             on:
@@ -488,19 +522,19 @@
                                 name: Nome do primeiro job
                                 runs-on: ubuntu-latest
                                 steps:
-                                  - name: Passo que usa um pacote pronto
-                                    uses: nome/pacote@versao
+                                  - name: "Passo que usa um pacote pronto"
+                                    uses: autor/pacote@versao
                                     with:
-                                      configuracao: valor
+                                      configuracao1: valor1
                                       configuracao2: valor2
                                       configuracao3: valor3
                                       configuracao4: ${{ secrets.VARIAVEL_DO_SECRETS }}
 
-                                  - name: Passo que executa comandos no shell
+                                  - name: "Passo que executa comandos no shell"
                                     run: |
-                                      comando arg arg arg
-                                      comando arg arg arg
-                                      comando arg arg arg
+                                      comando1 args...
+                                      comando2 args...
+                                      comando3 args...
 
                               job2:
                                 name: Nome do segundo job
@@ -520,19 +554,17 @@
                             Sintaxe de fluxo de trabalho para o GitHub Actions
                         </a>
                     </section>
-                    <section data-auto-animate>
-                        <h1 class="subtitle">GitHub Actions</h1>
-                        <h2>Sintaxe</h2>
-                        <pre data-id="pre"><code class="yaml" data-trim data-line-numbers></code></pre>
-                        <a href="https://docs.github.com/pt/actions/using-workflows/workflow-syntax-for-github-actions"
-                           rel="noopener" target="_blank" class="reference" data-id="reference">
-                            Sintaxe de fluxo de trabalho para o GitHub Actions
-                        </a>
-                    </section>
                     <section>
                         <h1 class="subtitle">GitHub Actions</h1>
                         <h2>Dica</h2>
-                        https://github.com/nektos/act
+                        <p>
+                            Ao invés de ficar fazendo <em>push</em> ou outras ações reais no seu repositório para rodar
+                            um <em>workflow</em>, recomendo usar o
+                            <a href="https://github.com/nektos/act" target="_blank" rel="noopener">
+                                <code>nektos/act</code>
+                            </a>, ferramenta que permite executá-lo localmente em sua máquina, simulando os eventos de
+                            gatilho
+                        </p>
                     </section>
                 </section> <!-- GitHub Actions -->
 
