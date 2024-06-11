@@ -10,9 +10,11 @@
   --r-link-color-hover: #a782ed;
   --border-radius: 5px;
   --background-color-darker: rgba(255, 255, 255, 0.05);
-  --color-kbd: #ccc;
+  --color-muted: #ccc;
+  --color-kbd: var(--color-muted);
   --color-subheading: #b5c2b7;
-  --color-heading2: #ff9e00;
+  --color-accent: #ff9e00;
+  --color-heading2: var(--color-accent);
 }
 
 /* Layout */
@@ -32,8 +34,6 @@
   right: auto;
   left: 8px;
 }
-
-
 
 /* Código */
 .reveal pre {
@@ -64,6 +64,7 @@ a:is(:hover, :focus) > kbd {
   color: var(--r-link-color-hover);
 }
 code.hljs {
+  /*background-color: #010409;*/
   border-radius: var(--border-radius);
 }
 code.hljs.shell {
@@ -73,7 +74,7 @@ code.hljs.shell .language-bash {
   color: #e9e9f4;
 }
 td.hljs-ln-line.hljs-ln-numbers {
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 /* Cabeçalho */
@@ -112,8 +113,6 @@ a.reference:after {
   opacity: 0.5;
   content: " ]";
 }
-
-
 
 /* Sobre mim */
 #about-me {
@@ -174,14 +173,66 @@ a.reference:after {
   line-height: 1.4;
 }
 
-/* Primeiro slide e slide de problemas */
-.slide-problem > span,
-.first-slide > h2 {
+/* Primeiro slide */
+#first-slide > h2 {
   display: inline-block;
   font-size: 1.2em;
   font-weight: bold;
   color: #111;
   background: var(--color-heading2);
   padding: 4px 10px;
+  border-radius: var(--border-radius);
+}
+
+/* Layout */
+.d-block {
+  display: block;
+}
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 1em;
+}
+.d-flex.cols-2 > div {
+  flex: 50% 1 0;
+}
+.r-stack > li {
+  width: 100%;
+}
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.h-100 {
+  height: 100%;
+}
+
+/* Tipografia */
+.text-center {
+  text-align: center;
+}
+.text-strike {
+  text-decoration: line-through;
+}
+.text-muted {
+  color: var(--color-muted);
+}
+.fs-small {
+  font-size: 0.7em;
+  letter-spacing: -0.5px;
+}
+
+/* Listas */
+ul.margin > li + li {
+  margin-top: 1em;
+}
+
+/* Fragment */
+.fragment.custom.highlight-accent.visible {
+  color: var(--color-accent);
+}
+
+/* Imagem */
+img {
   border-radius: var(--border-radius);
 }

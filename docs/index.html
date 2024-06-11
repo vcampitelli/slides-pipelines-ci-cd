@@ -24,7 +24,7 @@
     <body>
         <div class="reveal">
             <div class="slides">
-                <section class="first-slide">
+                <section id="first-slide">
                     <h1>Criando esteiras de CI/CD performáticas e seguras</h1>
                     <h2>Vinícius Campitelli</h2>
                 </section>
@@ -365,87 +365,107 @@
                     <section> <!-- Ferramentas -->
                         <h1 class="subtitle">CI/CD</h1>
                         <h2>Ferramentas de CI</h2>
-                        <div class="d-flex half-columns">
-                            <ul class="margin">
-                                <li>
-                                    Versionamento
-                                    <ul>
-                                        <li>
-                                            <a href="https://bitbucket.org/product/features/pipelines" target="_blank"
-                                               rel="noopener">
-                                                Bitbucket Pipelines
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://docs.github.com/en/actions" target="_blank" rel="noopener"
-                                                class="fragment highlight-green">
-                                                GitHub Actions
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener">
-                                                GitLab CI/CD
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Cloud
-                                    <ul>
-                                        <li>
-                                            <a href="https://aws.amazon.com/codepipeline/" target="_blank" rel="noopener">
-                                                AWS CodePipeline
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://azure.microsoft.com/en-us/services/devops/" target="_blank"
-                                               rel="noopener">
-                                                Azure DevOps
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://cloud.google.com/solutions/continuous-integration/"
-                                               target="_blank"
-                                               rel="noopener">
-                                                Google Cloud CI
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="margin">
-                                <li>
-                                    Ferramentas avulsas
-                                    <ul>
-                                        <li>
-                                            <a href="https://www.atlassian.com/software/bamboo" target="_blank"
-                                               rel="noopener">
-                                                Bamboo
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://circleci.com/" target="_blank" rel="noopener">
-                                                CircleCI
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.jenkins.io/" target="_blank" rel="noopener">
-                                                Jenkins
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.jetbrains.com/teamcity/" target="_blank" rel="noopener">
-                                                TeamCity
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.ibm.com/cloud/urbancode" target="_blank" rel="noopener">
-                                                UrbanCode
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <ul class="margin">
+                                    <li>
+                                        Versionamento
+                                        <ul>
+                                            <li>
+                                                <a href="https://bitbucket.org/product/features/pipelines"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    Bitbucket Pipelines
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://docs.github.com/en/actions"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment custom highlight-accent" data-fragment-index="1">
+                                                    GitHub Actions
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://docs.gitlab.com/ee/ci/"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    GitLab CI/CD
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Cloud
+                                        <ul>
+                                            <li>
+                                                <a href="https://aws.amazon.com/codepipeline/"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    AWS CodePipeline
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://azure.microsoft.com/en-us/services/devops/"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    Azure DevOps
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://cloud.google.com/solutions/continuous-integration/"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    Google Cloud CI
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <ul class="margin">
+                                    <li>
+                                        Ferramentas avulsas
+                                        <ul>
+                                            <li>
+                                                <a href="https://www.atlassian.com/software/bamboo"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    Atlassian Bamboo
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://circleci.com/"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    CircleCI
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.ibm.com/products/devops"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    IBM DevOps Accelerate
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.jenkins.io/"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    Jenkins
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="https://www.jetbrains.com/teamcity/"
+                                                   target="_blank" rel="noopener"
+                                                   class="fragment semi-fade-out" data-fragment-index="1">
+                                                    JetBrains TeamCity
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </section> <!-- Ferramentas -->
                 </section> <!-- Introdução -->
@@ -485,17 +505,17 @@
                         <p>
                             Cada <b>Fluxo</b> é composto por:
                         </p>
-                        <ul>
-                            <li>
+                        <ul class="margin">
+                            <li class="fragment">
                                 Gatilhos <em>("triggers")</em> responsáveis por dispará-lo, como <em>push</em> em alguma
                                 <em>branch</em>, <em>pull request</em> aberta, <em>issue</em> criada, sistema de
                                 agendamento <em>(como o "cron")</em>, entre outros
                             </li>
-                            <li>
+                            <li class="fragment">
                                 <em>Jobs</em> que podem ser executados de maneira sequencial ou em paralelo entre si,
                                 que serão executados em <em>runners</em> (geralmente um <em>container</em>)
                             </li>
-                            <li>
+                            <li class="fragment">
                                 Os <em>Jobs</em> são compostos de etapas <em>("steps")</em> para executar
                                 <em>scripts</em> definidos por você ou ações de terceiros (que são disponibilizadas como
                                 pacotes)
@@ -572,13 +592,134 @@
                     <section>
                         <h1>Dicas de Performance</h1>
                     </section>
-                    <section>
+                    <section data-auto-animate>
                         <h1 class="subtitle">Dicas de Performance</h1>
-                        <h2>Falhar primeiro</h2>
+                        <h2>Falhar Rápido</h2>
+                        <p>
+                            Organize os <em>jobs</em> e <em>steps</em> para que as ações mais rápidas sejam executadas
+                            primeiro
+                        </p>
+                        <p>
+                            Assim, caso alguma etapa falhe, economizaremos tempo (e dinheiro)
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="subtitle">Dicas de Performance</h1>
+                        <h2>Falhar Rápido</h2>
+                        <p><b>Exemplo</b> de <em>pipeline</em>:</p>
+                        <div class="d-flex">
+                            <div>
+                                <pre class="my-0"><code class="yaml" data-trim data-fragment-index="0"
+                                           data-line-numbers="|6-7|9-10|12-13|15-18|20-21|23-24|26-27|29-30|32-33|35-36">
+                                    jobs:
+                                      job1:
+                                        name: Nome do primeiro job
+                                        runs-on: ubuntu-latest
+                                        steps:
+                                          - name: Checkout do código
+                                            uses: actions/checkout@v4
+
+                                          - name: Configurando ambiente
+                                            run: apt-get update && apt-get install jq
+
+                                          - name: Instalando dependências de desenvolvimento
+                                            run: npm install --production=false
+
+                                          - name: Análise estática do código
+                                            run: |
+                                              npm run lint
+                                              sonarscanner src/
+
+                                          - name: Build de desenvolvimento
+                                            run: npm run build:dev
+
+                                          - name: Testes
+                                            run: npm test
+
+                                          - name: Instalando dependências de produção
+                                            run: npm install --production=true
+
+                                          - name: Build de produção
+                                            run: npm run build
+
+                                          - name: Migrations e seeders
+                                            run: npm run migration
+
+                                          - name: Deploy
+                                            run: ./deploy-to-production build/
+                                </code></pre>
+                            </div>
+                            <div>
+                                <ol class="r-stack h-100">
+                                    <li class="fragment current-visible" data-fragment-index="0">
+                                        Checkout do código
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="1">
+                                        Configuração do ambiente
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="2">
+                                        Instalação de dependências de desenvolvimento
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="3">
+                                        Análise estática do código
+                                        <ul>
+                                            <li><em>Linting</em></li>
+                                            <li>Análise de segurança</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="4">
+                                        Build de desenvolvimento
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="5">
+                                        Testes
+                                        <ul>
+                                            <li>Testes de unidade</li>
+                                            <li>Testes de integração</li>
+                                            <li>Testes End-to-end</li>
+                                        </ul>
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="6">
+                                        Instalação de dependências de produção
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="7">
+                                        Build de produção
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="8">
+                                        Execução de <em>migrations</em> e <em>seeds</em> do banco
+                                    </li>
+                                    <li class="fragment current-visible" data-fragment-index="9">
+                                        Deploy
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Paralelização</h2>
+                        <p>
+                            Execute em paralelo <em>jobs</em> que não possuem dependência entre si
+                        </p>
+                        <pre><code class="yaml" data-trim>
+                            jobs:
+                              testFirefox:
+                                steps:
+                                  - uses: actions/checkout@v4
+                                  - name: "Testando no Firefox"
+                                    run: npm run e2e:test-firefox
+
+                              testChrome:
+                                steps:
+                                  - uses: actions/checkout@v4
+                                  - name: "Testando no Chrome"
+                                    run: npm run e2e:test-chrome
+
+                              testWebkit:
+                                steps:
+                                  - uses: actions/checkout@v4
+                                  - name: "Testando no Webkit"
+                                    run: npm run e2e:test-webkit
+                        </code></pre>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
@@ -587,10 +728,45 @@
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Caching</h2>
+                        <p>
+                            Faça <em>cache</em> das dependências do seu sistema para diminuir o tempo de execução
+                        </p>
+                        <div class="d-flex">
+                            <div>
+                                <pre><code class="yaml" data-trim data-line-numbers>
+                                    jobs:
+
+                                      build:
+                                        steps:
+                                          - name: Checkout do código
+                                            uses: actions/checkout@v4
+
+                                          - name: Configurando Node
+                                            uses: actions/setup-node@v4
+                                            with:
+                                              node-version: 22
+                                              cache: 'npm'
+
+                                          - name: Instalando dependências
+                                            run: npm ci
+                                </code></pre>
+                            </div>
+                            <div>
+                                <img src="img/cache.png" alt="Usando cache no GitHub Actions">
+                            </div>
+                        </div>
+                        <a href="https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows"
+                           target="_blank" rel="noopener" class="reference">
+                            Caching dependencies to speed up workflows
+                        </a>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Artefatos</h2>
+                    </section>
+                    <section>
+                        <h1 class="subtitle">Dicas de Performance</h1>
+                        <h2>Imagens customizadas</h2>
                     </section>
                 </section> <!-- Dicas de Performance -->
 
@@ -600,11 +776,82 @@
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Segurança</h1>
-                        <h2>Não colocar credenciais</h2>
+                        <h2>Não deixar credenciais</h2>
+                        <p>
+                            <b>Nunca</b> deixe credenciais (senhas, chaves de API, <em>access tokens</em> e afins) em
+                            seus <em>workflows</em>. Utilize os <em>secrets</em> para guardar essas informações, que não
+                            vazarão em <em>logs</em> e nem poderão ser lidas por outros colaboradores do repositório.
+                        </p>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <pre><code class="yaml" data-trim style="white-space: pre-wrap">
+                                    jobs:
+                                      build:
+                                        steps:
+                                          - name: Requisição da API
+                                            env:
+                                              access_token: ${{ secrets.API_ACCESS_TOKEN }}
+                                            run: |
+                                              curl \
+                                                -H "Authorization: Bearer $access_token" \
+                                                -X POST https://api.com/endpoint
+                                </code></pre>
+                            </div>
+                            <div>
+                                <img src="img/secrets.gif" alt="Usando Secrets">
+                            </div>
+                        </div>
+                        <a href="https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions"
+                           target="_blank" rel="noopener" class="reference">
+                            Using secrets in GitHub Actions - GitHub Docs
+                        </a>
                     </section>
-                    <section>
+                    <section data-auto-animate>
                         <h1 class="subtitle">Dicas de Segurança</h1>
                         <h2>Marcar versões</h2>
+                        <p>
+                            Para evitar que seu <em>workflow</em> pare de funcionar caso alguma ação ou pacote tenha uma
+                            quebra de compatibilidade reversa, marque exatamente as versões das ações e pacotes que irá
+                            precisar
+                        </p>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <p class="fs-small text-muted my-0">Antes:</p>
+                                <pre><code class="yaml" data-trim data-line-numbers="|3|6|10-11"
+                                           data-fragment-index="0">
+                                    steps:
+                                      - name: Checkout do código
+                                        uses: action/checkout
+
+                                      - name: Configurando Node
+                                        uses: actions/setup-node
+
+                                      - name: Baixando e executando algum cliente
+                                        run: |
+                                          wget https://download.com/latest.zip
+                                          unzip latest.zip
+                                          ./client ...
+                                </code></pre>
+                            </div>
+                            <div>
+                                <p class="fs-small text-muted my-0">Depois:</p>
+                                <pre><code class="yaml" data-trim data-line-numbers="|3|6|10-11"
+                                           data-fragment-index="0">
+                                    steps:
+                                      - name: Checkout do código
+                                        uses: action/checkout@v4
+
+                                      - name: Configurando Node
+                                        uses: actions/setup-node@v4
+
+                                      - name: Baixando e executando algum cliente
+                                        run: |
+                                          wget https://download.com/v1.5.7.zip
+                                          unzip v1.5.7.zip
+                                          ./client ...
+                                </code></pre>
+                            </div>
+                        </div>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Segurança</h1>
@@ -633,10 +880,10 @@
                 </section> <!-- Dicas de Segurança -->
 
                 <section> <!-- Referências -->
-                    <section>
+                    <section data-auto-animate data-auto-animate-restart>
                         <h1>Referências</h1>
                     </section>
-                    <section>
+                    <section data-auto-animate>
                         <h1>Referências</h1>
                         <ul>
                             <li>
@@ -655,8 +902,26 @@
                     </section>
                 </section> <!-- Referências -->
 
+                <section> <!-- Treinamentos in company -->
+                    <h1>Treinamentos in company</h1>
+                    <div class="d-flex cols-2 items-center">
+                        <div class="qrcode-featured-text">
+                            Gostou? Então conheça meus treinamentos corporativos e sob demanda sobre Desenvolvimento,
+                            Segurança da Informação, DevOps, Arquitetura de Sistemas e diversos outros assuntos em
+                            <a href="https://bit.ly/vcampitelli" target="_blank" rel="noopener" class="fw-bold">
+                                viniciuscampitelli.com
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://bit.ly/vcampitelli" target="_blank" rel="noopener" class="d-block">
+                                <img src="img/qrcode-workshops.png" alt="Workshops" style="height: 300px" class="my-0">
+                            </a>
+                        </div>
+                    </div>
+                </section> <!-- Treinamentos in company -->
+
                 <section> <!-- Obrigado -->
-                    <h2 class="text-center">Obrigado!</h2>
+                    <h1 class="text-center">Obrigado!</h1>
                     <div class="about-me-links">
                         <div>
                             <svg role="img" width="64px" height="64px" viewBox="0 0 24 24"
@@ -703,24 +968,6 @@
                         </div>
                     </div>
                 </section> <!-- Obrigado -->
-
-                <section> <!-- Treinamentos in company -->
-                    <h1>Treinamentos in company</h1>
-                    <div class="d-flex cols-2 items-center">
-                        <div class="qrcode-featured-text">
-                            Gostou? Então conheça meus treinamentos corporativos e sob demanda sobre Desenvolvimento,
-                            Segurança da Informação, DevOps, Arquitetura de Sistemas e diversos outros assuntos em
-                            <a href="https://bit.ly/vcampitelli" target="_blank" rel="noopener" class="fw-bold">
-                                viniciuscampitelli.com
-                            </a>
-                        </div>
-                        <div>
-                            <a href="https://bit.ly/vcampitelli" target="_blank" rel="noopener" class="d-block">
-                                <img src="img/qrcode-workshops.png" alt="Workshops" style="height: 300px" class="my-0">
-                            </a>
-                        </div>
-                    </div>
-                </section> <!-- Treinamentos in company -->
             </div>
         </div>
 
