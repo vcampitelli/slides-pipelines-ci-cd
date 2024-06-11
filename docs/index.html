@@ -700,7 +700,7 @@
                         <p>
                             Execute em paralelo <em>jobs</em> que não possuem dependência entre si
                         </p>
-                        <pre><code class="yaml" data-trim>
+                        <pre><code class="yaml" data-trim data-line-numbers>
                             jobs:
                               testFirefox:
                                 steps:
@@ -720,10 +720,6 @@
                                   - name: "Testando no Webkit"
                                     run: npm run e2e:test-webkit
                         </code></pre>
-                    </section>
-                    <section>
-                        <h1 class="subtitle">Dicas de Performance</h1>
-                        <h2>Matrizes</h2>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
@@ -762,6 +758,10 @@
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
+                        <h2>Matrizes</h2>
+                    </section>
+                    <section>
+                        <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Artefatos</h2>
                     </section>
                     <section>
@@ -792,9 +792,9 @@
                                             env:
                                               access_token: ${{ secrets.API_ACCESS_TOKEN }}
                                             run: |
-                                              curl \
+                                              curl -X POST \
                                                 -H "Authorization: Bearer $access_token" \
-                                                -X POST https://api.com/endpoint
+                                                https://api.com/endpoint
                                 </code></pre>
                             </div>
                             <div>
@@ -817,7 +817,7 @@
                         <div class="d-flex cols-2">
                             <div>
                                 <p class="fs-small text-muted my-0">Antes:</p>
-                                <pre><code class="yaml" data-trim data-line-numbers="|3|6|10-11"
+                                <pre data-id="pre"><code class="yaml" data-trim data-line-numbers="3|6|10-11"
                                            data-fragment-index="0">
                                     steps:
                                       - name: Checkout do código
@@ -835,7 +835,7 @@
                             </div>
                             <div>
                                 <p class="fs-small text-muted my-0">Depois:</p>
-                                <pre><code class="yaml" data-trim data-line-numbers="|3|6|10-11"
+                                <pre><code class="yaml" data-trim data-line-numbers="3|6|10-11"
                                            data-fragment-index="0">
                                     steps:
                                       - name: Checkout do código
@@ -853,29 +853,156 @@
                             </div>
                         </div>
                     </section>
-                    <section>
+                    <section data-auto-animate>
                         <h1 class="subtitle">Dicas de Segurança</h1>
-                        <h2>Protegendo <em>workflows</em></h2>
-                        <p>Use <kbd>CODEOWNERS</kbd></p>
+                        <h2>Marcar versões</h2>
+                        <p>
+                            Para evitar que seu <em>workflow</em> pare de funcionar caso alguma ação ou pacote tenha uma
+                            quebra de compatibilidade reversa, marque exatamente as versões das ações e pacotes que irá
+                            precisar
+                        </p>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <p class="fs-small text-muted my-0">Antes:</p>
+                                <pre data-id="pre"><code class="yaml" data-trim data-line-numbers="3|6"
+                                           data-fragment-index="0">
+                                    steps:
+                                      - name: Checkout do código
+                                        uses: action/checkout
+
+                                      - name: Configurando Node
+                                        uses: actions/setup-node
+
+                                      - name: Baixando e executando algum cliente
+                                        run: |
+                                          wget https://download.com/latest.zip
+                                          unzip latest.zip
+                                          ./client ...
+                                </code></pre>
+                            </div>
+                            <div>
+                                <p class="fs-small text-muted my-0">Ou até mesmo:</p>
+                                <pre><code class="yaml" data-trim data-line-numbers="3|6"
+                                           data-fragment-index="0">
+                                    steps:
+                                      - name: Checkout do código
+                                        uses: action/checkout@a5ac7e51b41094c92402da3b24376905380afc29
+
+                                      - name: Configurando Node
+                                        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8
+
+                                      - name: Baixando e executando algum cliente
+                                        run: |
+                                          wget https://download.com/v1.5.7.zip
+                                          unzip v1.5.7.zip
+                                          ./client ...
+                                </code></pre>
+                            </div>
+                        </div>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Segurança</h1>
-                        <h2>Cuidado com scripts <em>inline</em></h2>
-                        <p>Script injection</p>
+                        <h2>Protegendo <em>workflows</em></h2>
+                        <p>
+                            Crie um arquivo <code>.github/CODEOWNERS</code> com a sintaxe a seguir para determinar um
+                            time para aprovar <em>pull requests</em> que contenham modificações nos seus
+                            <em>workflows</em>
+                        </p>
+                        <pre><code class="ini" data-trim>
+                            /.github/workflows @sua-organizacao/nome-do-time
+                        </code></pre>
+                        <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners"
+                           target="_blank" rel="noopener" class="reference">About code owners - GitHub Docs</a>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Segurança</h1>
                         <h2>Permissões do <em>token</em></h2>
-
+                        <p>
+                            Todo <em>workflow</em> é executado com um <em>access token</em> para autenticação no
+                            repositório. Dependendo das ações do seu <em>workflow</em>, será preciso permitir alguns
+                            acessos através da instrução <kbd>permissions</kbd>. Nesse caso, ao invés de liberar acesso
+                            a todos os <em>jobs</em>, é possível configurar um a um:
+                        </p>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <p class="fs-small text-muted my-0">Acesso geral:</p>
+                                <pre><code class="yaml" data-trim data-line-numbers="|5-6" data-fragment-index="0">
+                                    name: "Meu workflow"
+                                    on:
+                                      push:
+                                        branches: [ "main" ]
+                                    permissions:
+                                      contents: write
+                                    jobs:
+                                      build:
+                                        steps:
+                                          - ...
+                                </code></pre>
+                            </div>
+                            <div>
+                                <p class="fs-small text-muted my-0">Acesso em um único <em>job</em>:</p>
+                                <pre><code class="yaml" data-trim data-line-numbers="|5-8" data-fragment-index="0">
+                                    name: "Meu workflow"
+                                    on:
+                                      push:
+                                        branches: [ "main" ]
+                                    jobs:
+                                      build:
+                                        permissions:
+                                          contents: write
+                                        steps:
+                                          - ...
+                                </code></pre>
+                            </div>
+                        </div>
+                        <a href="https://docs.github.com/en/actions/security-guides/automatic-token-authentication"
+                           target="_blank" rel="noopener" class="reference">
+                            Automatic token authentication - GitHub Docs
+                        </a>
                     </section>
-                    <section>
+                    <section data-auto-animate>
                         <h1 class="subtitle">Dicas de Segurança</h1>
                         <h2>Usando OIDC</h2>
+                        <p>
+                            Vários serviços (como os provedores de <em>cloud</em>) possuem integrações via
+                            <a href="https://openid.net/developers/how-connect-works/" target="_blank"
+                               rel="noopener">OpenID Connect</a> <em>(OIDC)</em>, protocolo de autenticação baseado no
+                            <a href="https://oauth.net/2/" target="_blank" rel="noopener">OAuth 2</a>, sem a necessidade
+                            de credenciais como <em>access tokens</em>, garantindo maior segurança e praticidade
+                        </p>
+                        <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect"
+                           target="_blank" rel="noopener" class="reference">
+                            About security hardening with OpenID Connect - GitHub Docs
+                        </a>
                     </section>
-                    <section>
+                    <section data-auto-animate>
                         <h1 class="subtitle">Dicas de Segurança</h1>
-                        <h2>Usando Scorecard</h2>
-                        https://github.com/ossf/scorecard
+                        <h2>Usando OIDC</h2>
+                        <p>
+                            Para isso, configure no serviço uma <em>relação de confiança</em>, dizendo que determinados
+                            <em>tokens</em> emitidos pelo GitHub Actions podem ter acesso à sua conta, e configure a
+                            troca do <em>token</em> OIDC em seu <em>workflow</em>
+                        </p>
+                        <p>Exemplo com a Amazon Web Services:</p>
+                        <pre><code class="yaml" data-trim data-line-numbers>
+                            jobs:
+                              build:
+                                steps:
+                                  - name: "Checkout do código"
+                                    uses: actions/checkout@v4
+                                  - name: "Configurando AWS"
+                                    uses: aws-actions/configure-aws-credentials@v4
+                                    with:
+                                      role-to-assume: ${{ secrets.AWS_ROLE }}
+                                      aws-region: ${{ env.AWS_REGION }}
+                                  - name: "Sobe no S3"
+                                    run: |
+                                      aws s3 sync ./dist/ s3://${{ env.BUCKET_NAME }}/ --delete
+                        </code></pre>
+                        <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services"
+                           target="_blank" rel="noopener" class="reference">
+                            Configuring OpenID Connect in Amazon Web Services - GitHub Docs
+                        </a>
                     </section>
                 </section> <!-- Dicas de Segurança -->
 
@@ -896,6 +1023,12 @@
                                 <a href="https://dev.to/zenika/gitlab-ci-optimization-15-tips-for-faster-pipelines-55al"
                                    target="_blank" rel="noopener">
                                     GitLab CI Optimization: 15+ Tips for Faster Pipelines
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://cmolina.dev/posts/2023/12/faster-and-cost-effective-github-actions/"
+                                   target="_blank" rel="noopener">
+                                    Optimizing GitHub Actions: 7 Strategies for Faster and Cost-Effective CI pipelines
                                 </a>
                             </li>
                         </ul>
