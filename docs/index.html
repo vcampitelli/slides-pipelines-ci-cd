@@ -9,14 +9,15 @@
 
         <link rel="stylesheet" href="reveal.js/dist/reset.css">
         <link rel="stylesheet" href="reveal.js/dist/reveal.css">
-        <link rel="stylesheet" href="reveal.js/dist/theme/black.css">
+        <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
 
         <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/dracula.min.css"
-              integrity="sha512-zKpFlhUX8c+WC6H/XTJavnEpWFt2zH9BU9vu0Hry5Y+SEgG21pRMFcecS7DgDXIegXBQ3uK9puwWPP3h6WSR9g=="
-              crossorigin="anonymous" referrerpolicy="no-referrer">
+              href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/framer.min.css"
+              integrity="sha512-tegeSiwBwq2gYD87Cycxj1Q5PX/y2owrYz1b0QmyEBldD9+mH+CxQK0/3FgRY37inbVLVNaARzMbLD/sl5YtCA=="
+              crossorigin="anonymous" referrerpolicy="no-referrer"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
         <link rel="stylesheet" href="css/app.css">
     </head>
@@ -46,7 +47,7 @@
                                 <li>Entusiasta em cibersegurança</li>
                                 <li>Consultor de TI e instrutor de treinamentos</li>
                             </ul>
-                            <div class="fw-bold text-center">Vinícius<br>Campitelli</div>
+                            <div id="about-me-name" class="text-center">Vinícius<br>Campitelli</div>
                         </div>
                         <div>
                             <div class="about-me-links">
@@ -596,7 +597,7 @@
                         <h2>Falhar Rápido</h2>
                         <p>
                             Organize os <em>jobs</em> e <em>steps</em> para que as ações mais rápidas sejam executadas
-                            primeiro. Assim, caso alguma etapa falhe, economizaremos tempo (e, com isso, dinheiro).
+                            primeiro &mdash; assim, caso alguma etapa falhe, economizaremos tempo (e dinheiro)
                         </p>
                     </section>
                     <section data-auto-animate>
@@ -821,9 +822,11 @@
                         <h1 class="subtitle">Dicas de Segurança</h1>
                         <h2>Não deixar credenciais</h2>
                         <p>
-                            <b>Nunca</b> deixe credenciais (senhas, chaves de API, <em>access tokens</em> e afins) em
-                            seus <em>workflows</em>. Utilize os <em>secrets</em> para guardar essas informações, que não
-                            vazarão em <em>logs</em> e nem poderão ser lidas por outros colaboradores do repositório.
+                            <b>Nunca</b> deixe credenciais (como senhas e chaves de API) nos <em>workflows</em>
+                        </p>
+                        <p>
+                            Utilize os <em>secrets</em> para guardar essas informações, que não vazarão em <em>logs</em>
+                            e nem poderão ser lidas por outros colaboradores do repositório
                         </p>
                         <div class="d-flex cols-2">
                             <div>

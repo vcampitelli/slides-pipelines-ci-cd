@@ -1,18 +1,20 @@
 :root {
   --r-main-font-size: 28px;
+  --r-main-font: Roboto, sans-serif;
   --r-heading-font: var(--r-main-font);
-  --r-heading-font-weight: 700;
+  --r-heading-font-weight: 600;
   --r-heading-letter-spacing: -2px;
   --r-heading-text-transform: normal;
   --r-code-font: "JetBrains Mono", monospace;
-  --r-link-color: #ee82ee;
-  --r-link-color-hover: #a782ed;
+  --r-link-color: #027bce;
+  --r-link-color-hover: var(--color-accent);
+  --r-block-margin: 10px;
   --border-radius: 5px;
-  --background-color-darker: rgba(255, 255, 255, 0.05);
-  --color-muted: #ccc;
-  --color-kbd: var(--color-muted);
-  --color-subheading: #b5c2b7;
-  --color-accent: #ff9e00;
+  --background-color-darker: rgba(0, 0, 0, 0.03);
+  --color-muted: #777;
+  --color-kbd: #fc7753;
+  --color-subheading: #999;
+  --color-accent: #0496ff;
   --color-heading2: var(--color-accent);
 }
 
@@ -20,18 +22,20 @@
 .reveal .slide-background {
   background-size: 100% 100%;
   background-position: 0 0, 0 0, 0 0, 0 0;
-  background-image: radial-gradient(40% 30% at 110% 0%, #ff9e0030 0%, #19191900 100%),
-  radial-gradient(40% 20% at 40% 0%, #03232cff 0%, #19191900 100%),
-  radial-gradient(40% 40% at 0% 100%, #4d0a4dff 1%, #19191900 100%),
-  radial-gradient(142% 91% at 111% 84%, #151515ff 0%, #1a1a1aff 100%);
+  background-image: radial-gradient(40% 30% at 0% 0%, #03234c20 0%, #ffffff00 100%),
+    radial-gradient(142% 91% at 111% 84%, #d0d0d0ff 0%, #ffffffff 100%);
 }
 .reveal .slides {
   text-align: left;
   letter-spacing: -1px;
 }
 .reveal .slide-number {
+  border-radius: var(--border-radius);
   right: auto;
   left: 8px;
+}
+.reveal p {
+  --r-block-margin: 20px;
 }
 
 /* Código */
@@ -39,6 +43,7 @@
   margin-left: 0;
   width: 100%;
   letter-spacing: -0.5px;
+  font-size: 0.51em;
 }
 code:not(.hljs) {
   font-size: 0.8em;
@@ -46,7 +51,7 @@ code:not(.hljs) {
   --padding-x: 7px;
   padding: 2px var(--padding-x);
   background-color: var(--background-color-darker);
-  color: var(--color-heading2);
+  color: var(--color-kbd);
 }
 h2 > code:not(.hljs),
 h3 > code:not(.hljs) {
@@ -55,6 +60,8 @@ h3 > code:not(.hljs) {
 kbd {
   font-family: var(--r-code-font);
   color: var(--color-kbd);
+  font-size: 0.9em;
+  letter-spacing: -1.5px;
 }
 a > kbd {
   color: var(--r-link-color);
@@ -63,7 +70,6 @@ a:is(:hover, :focus) > kbd {
   color: var(--r-link-color-hover);
 }
 code.hljs {
-  /*background-color: #010409;*/
   border-radius: var(--border-radius);
 }
 code.hljs.shell {
@@ -78,6 +84,14 @@ td.hljs-ln-line.hljs-ln-numbers {
 .pre-wrap {
   white-space: pre-wrap !important;
 }
+.hljs-attr,
+.hljs-link,
+.hljs-literal,
+.hljs-number,
+.hljs-symbol,
+.hljs-variable.constant_ {
+  color: var(--color-kbd);
+}
 
 /* Cabeçalho */
 h1.subtitle {
@@ -90,16 +104,21 @@ h1.subtitle {
 }
 h2 {
   --r-heading-color: var(--color-heading2);
+  --r-heading-line-height: 1;
+  --r-heading-margin: 0 0 40px 0;
 }
 
 /* Quote */
 .reveal blockquote {
   width: 100%;
+  color: #2e2f2f;
   margin-left: 0;
   padding: 15px;
   font-size: 0.9em;
   border-radius: var(--border-radius);
   box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
 }
 
 /* Referências */
@@ -136,6 +155,10 @@ a.reference:after {
 }
 #about-me > ul > li + li {
   margin-top: 0.2em;
+}
+#about-me-name {
+  font-weight: 600;
+  line-height: 1;
 }
 #profile-pic {
   margin: 0;
@@ -186,15 +209,16 @@ a.reference:after {
 
 /* Primeiro slide */
 #first-slide > h1 {
-  font-weight: 900;
+  --r-heading-font-weight: 700;
+  --r-heading-line-height: 1;
 }
 #first-slide > h2 {
   display: inline-block;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #111;
+  --r-heading2-size: 1.2em;
+  --r-heading-font-weight: 600;
+  --r-heading-color: #f2f2f2;
   background: var(--color-heading2);
-  padding: 4px 10px;
+  padding: 4px 8px;
   border-radius: var(--border-radius);
 }
 
