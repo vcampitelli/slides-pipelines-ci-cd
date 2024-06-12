@@ -638,9 +638,6 @@
                                           - name: Build de produção
                                             run: npm run build
 
-                                          - name: Migrations e seeders
-                                            run: npm run migration
-
                                           - name: Deploy
                                             run: ./deploy-to-production build/
                                 </code></pre>
@@ -681,9 +678,6 @@
                                         Build de produção
                                     </li>
                                     <li class="fragment current-visible" data-fragment-index="8">
-                                        Execução de <em>migrations</em> e <em>seeds</em> do banco
-                                    </li>
-                                    <li class="fragment current-visible" data-fragment-index="9">
                                         Deploy
                                     </li>
                                 </ol>
@@ -728,7 +722,7 @@
                             </a>
                             <a href="https://docs.docker.com/build/ci/github-actions/cache/" target="_blank"
                                rel="noopener">
-                                Cache management with GitHub Actions | Docker Docs
+                                Cache management with GitHub Actions - Docker Docs
                             </a>
                         </div>
                     </section>
@@ -802,14 +796,20 @@
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
-                        <h2>Artefatos</h2>
-                        <p>
-                            Se houverem passos
-                        </p>
-                    </section>
-                    <section>
-                        <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Imagens customizadas</h2>
+                        <p>
+                            Se seu <em>workflow</em> possuir grandes etapas de configuração de ambiente, você pode criar
+                            uma imagem de <em>container</em> em algum Registry (como o Docker Hub) e especificá-la
+                        </p>
+                        <pre><code class="yaml" data-trim data-line-numbers>
+                            jobs:
+                              build:
+                                container:
+                                  image: organizacao/imagem
+                                  credentials:
+                                     username: ${{ secrets.RUNNER_REGISTRY_USERNAME }}
+                                     password: ${{ secrets.RUNNER_REGISTRY_PASSWORD }}
+                        </code></pre>
                     </section>
                 </section> <!-- Dicas de Performance -->
 

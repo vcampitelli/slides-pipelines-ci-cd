@@ -1,5 +1,5 @@
 :root {
-  --r-main-font-size: 26px;
+  --r-main-font-size: 28px;
   --r-heading-font: var(--r-main-font);
   --r-heading-font-weight: 700;
   --r-heading-letter-spacing: -2px;
@@ -103,7 +103,7 @@ h2 {
 }
 
 /* Referências */
-div;,
+div.references,
 a.reference {
   font-size: 0.75em;
 }
@@ -185,6 +185,9 @@ a.reference:after {
 }
 
 /* Primeiro slide */
+#first-slide > h1 {
+  font-weight: 900;
+}
 #first-slide > h2 {
   display: inline-block;
   font-size: 1.2em;
