@@ -216,10 +216,7 @@ a.reference:after {
   display: inline-block;
   --r-heading2-size: 1.2em;
   --r-heading-font-weight: 600;
-  --r-heading-color: #f2f2f2;
-  background: var(--color-heading2);
-  padding: 4px 8px;
-  border-radius: var(--border-radius);
+  --r-heading-color: var(--color-heading2);
 }
 
 /* Layout */
