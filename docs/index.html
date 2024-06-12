@@ -17,8 +17,7 @@
               crossorigin="anonymous" referrerpolicy="no-referrer">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&family=JetBrains+Mono&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
         <link rel="stylesheet" href="css/app.css">
     </head>
     <body>
@@ -597,10 +596,7 @@
                         <h2>Falhar Rápido</h2>
                         <p>
                             Organize os <em>jobs</em> e <em>steps</em> para que as ações mais rápidas sejam executadas
-                            primeiro
-                        </p>
-                        <p>
-                            Assim, caso alguma etapa falhe, economizaremos tempo (e dinheiro)
+                            primeiro. Assim, caso alguma etapa falhe, economizaremos tempo (e, com isso, dinheiro).
                         </p>
                     </section>
                     <section data-auto-animate>
@@ -696,43 +692,17 @@
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
-                        <h2>Paralelização</h2>
-                        <p>
-                            Execute em paralelo <em>jobs</em> que não possuem dependência entre si
-                        </p>
-                        <pre><code class="yaml" data-trim data-line-numbers>
-                            jobs:
-                              testFirefox:
-                                steps:
-                                  - uses: actions/checkout@v4
-                                  - name: "Testando no Firefox"
-                                    run: npm run e2e:test-firefox
-
-                              testChrome:
-                                steps:
-                                  - uses: actions/checkout@v4
-                                  - name: "Testando no Chrome"
-                                    run: npm run e2e:test-chrome
-
-                              testWebkit:
-                                steps:
-                                  - uses: actions/checkout@v4
-                                  - name: "Testando no Webkit"
-                                    run: npm run e2e:test-webkit
-                        </code></pre>
-                    </section>
-                    <section>
-                        <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Caching</h2>
                         <p>
-                            Faça <em>cache</em> das dependências do seu sistema para diminuir o tempo de execução
+                            Faça <em>cache</em> de dependências, <em>layers</em> de <em>containers</em> e outros
+                            arquivos para diminuir o tempo de execução do <em>workflow</em>
                         </p>
                         <div class="d-flex">
                             <div>
                                 <pre><code class="yaml" data-trim data-line-numbers>
                                     jobs:
-
                                       build:
+                                        runs-on: ubuntu-latest
                                         steps:
                                           - name: Checkout do código
                                             uses: actions/checkout@v4
@@ -751,18 +721,91 @@
                                 <img src="img/cache.png" alt="Usando cache no GitHub Actions">
                             </div>
                         </div>
-                        <a href="https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows"
-                           target="_blank" rel="noopener" class="reference">
-                            Caching dependencies to speed up workflows
-                        </a>
+                        <div class="references">
+                            <a href="https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows"
+                               target="_blank" rel="noopener">
+                                Caching dependencies to speed up workflows
+                            </a>
+                            <a href="https://docs.docker.com/build/ci/github-actions/cache/" target="_blank"
+                               rel="noopener">
+                                Cache management with GitHub Actions | Docker Docs
+                            </a>
+                        </div>
+                    </section>
+                    <section>
+                        <h1 class="subtitle">Dicas de Performance</h1>
+                        <h2>Paralelização</h2>
+                        <p>
+                            Execute em paralelo <em>jobs</em> que não possuem dependência entre si
+                        </p>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <pre><code class="yaml" data-trim data-line-numbers>
+                                    jobs:
+                                      testFirefox:
+                                        runs-on: ubuntu-latest
+                                        steps:
+                                          - uses: actions/checkout@v4
+                                          - name: "Testando no Firefox"
+                                            run: npm run e2e:test-firefox
+
+                                      testChrome:
+                                        runs-on: ubuntu-latest
+                                        steps:
+                                          - uses: actions/checkout@v4
+                                          - name: "Testando no Chrome"
+                                            run: npm run e2e:test-chrome
+
+                                      testWebkit:
+                                        runs-on: ubuntu-latest
+                                        steps:
+                                          - uses: actions/checkout@v4
+                                          - name: "Testando no Webkit"
+                                            run: npm run e2e:test-webkit
+                                </code></pre>
+                            </div>
+                            <div>
+                                <img src="img/paralelizacao.gif" alt="Paralelização de jobs">
+                            </div>
+                        </div>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Matrizes</h2>
+                        <p>
+                            Para facilitar a escrita de <em>jobs</em> em paralelo, é possível usar matrizes para criar
+                            variações de versões, sistemas operacionais, configurações e mais
+                        </p>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <pre><code class="yaml pre-wrap" data-trim data-line-numbers>
+                                    jobs:
+                                      build:
+                                        strategy:
+                                          matrix:
+                                            version: [20, 21, 22]
+                                            os: [ubuntu-latest, windows-latest]
+                                        runs-on: ${{ matrix.os }}
+                                        steps:
+                                          - name: "Node ${{ matrix.version }} em ${{ matrix.os }}"
+                                            run: ...
+                                </code></pre>
+                            </div>
+                            <div>
+                                <img src="img/matrix.gif" alt="Usando matrizes para paralelização">
+                            </div>
+                        </div>
+                        <a href="https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs"
+                           target="_blank" rel="noopener" class="reference">
+                            Using a matrix for your jobs - GitHub Docs
+                        </a>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Artefatos</h2>
+                        <p>
+                            Se houverem passos
+                        </p>
                     </section>
                     <section>
                         <h1 class="subtitle">Dicas de Performance</h1>
@@ -784,9 +827,10 @@
                         </p>
                         <div class="d-flex cols-2">
                             <div>
-                                <pre><code class="yaml" data-trim style="white-space: pre-wrap">
+                                <pre><code class="yaml pre-wrap" data-trim>
                                     jobs:
                                       build:
+                                        runs-on: ubuntu-latest
                                         steps:
                                           - name: Requisição da API
                                             env:
@@ -920,8 +964,8 @@
                         <p>
                             Todo <em>workflow</em> é executado com um <em>access token</em> para autenticação no
                             repositório. Dependendo das ações do seu <em>workflow</em>, será preciso permitir alguns
-                            acessos através da instrução <kbd>permissions</kbd>. Nesse caso, ao invés de liberar acesso
-                            a todos os <em>jobs</em>, é possível configurar um a um:
+                            acessos através da configuração <kbd>permissions</kbd>. Nesse caso, ao invés de liberar
+                            acesso a todos os <em>jobs</em>, é possível configurar um a um:
                         </p>
                         <div class="d-flex cols-2">
                             <div>
@@ -983,21 +1027,23 @@
                             <em>tokens</em> emitidos pelo GitHub Actions podem ter acesso à sua conta, e configure a
                             troca do <em>token</em> OIDC em seu <em>workflow</em>
                         </p>
-                        <p>Exemplo com a Amazon Web Services:</p>
+                        <p class="fs-small text-muted my-0">Exemplo com a Amazon Web Services:</p>
                         <pre><code class="yaml" data-trim data-line-numbers>
                             jobs:
                               build:
+                                runs-on: ubuntu-latest
                                 steps:
                                   - name: "Checkout do código"
                                     uses: actions/checkout@v4
+
                                   - name: "Configurando AWS"
                                     uses: aws-actions/configure-aws-credentials@v4
                                     with:
                                       role-to-assume: ${{ secrets.AWS_ROLE }}
                                       aws-region: ${{ env.AWS_REGION }}
+
                                   - name: "Sobe no S3"
-                                    run: |
-                                      aws s3 sync ./dist/ s3://${{ env.BUCKET_NAME }}/ --delete
+                                    run: aws s3 sync ./dist/ s3://${{ env.AWS_BUCKET_NAME }}/ --delete
                         </code></pre>
                         <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services"
                            target="_blank" rel="noopener" class="reference">
@@ -1014,12 +1060,6 @@
                         <h1>Referências</h1>
                         <ul>
                             <li>
-                                <a href="https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions"
-                                   target="_blank" rel="noopener">
-                                    Security hardening for GitHub Actions - GitHub Docs
-                                </a>
-                            </li>
-                            <li>
                                 <a href="https://dev.to/zenika/gitlab-ci-optimization-15-tips-for-faster-pipelines-55al"
                                    target="_blank" rel="noopener">
                                     GitLab CI Optimization: 15+ Tips for Faster Pipelines
@@ -1029,6 +1069,12 @@
                                 <a href="https://cmolina.dev/posts/2023/12/faster-and-cost-effective-github-actions/"
                                    target="_blank" rel="noopener">
                                     Optimizing GitHub Actions: 7 Strategies for Faster and Cost-Effective CI pipelines
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions"
+                                   target="_blank" rel="noopener">
+                                    Security hardening for GitHub Actions - GitHub Docs
                                 </a>
                             </li>
                         </ul>
@@ -1126,4 +1172,3 @@
         </script>
     </body>
 </html>
-

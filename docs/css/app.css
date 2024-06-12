@@ -1,6 +1,5 @@
 :root {
   --r-main-font-size: 26px;
-  --r-main-font: Inter, sans-serif;
   --r-heading-font: var(--r-main-font);
   --r-heading-font-weight: 700;
   --r-heading-letter-spacing: -2px;
@@ -76,14 +75,18 @@ code.hljs.shell .language-bash {
 td.hljs-ln-line.hljs-ln-numbers {
   opacity: 0.25;
 }
+.pre-wrap {
+  white-space: pre-wrap !important;
+}
 
 /* Cabeçalho */
 h1.subtitle {
   --r-heading1-size: 0.8em;
-  --r-heading-margin: 0 0 5px 0;
+  --r-heading-margin: 0;
   --r-heading-color: var(--color-subheading);
   --r-heading-font-weight: 500;
-  --r-heading-letter-spacing: -1.4px;
+  --r-heading-letter-spacing: -1px;
+  --r-heading-line-height: 1;
 }
 h2 {
   --r-heading-color: var(--color-heading2);
@@ -100,15 +103,23 @@ h2 {
 }
 
 /* Referências */
+div;,
+a.reference {
+  font-size: 0.75em;
+}
 a.reference {
   display: block;
   margin-top: 1em;
-  font-size: 0.75em;
 }
+.references > a {
+  display: inline-block;
+}
+.references > a:before,
 a.reference:before {
   opacity: 0.5;
   content: "[ ";
 }
+.references > a:after,
 a.reference:after {
   opacity: 0.5;
   content: " ]";
