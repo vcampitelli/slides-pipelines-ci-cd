@@ -226,10 +226,10 @@ a.reference:after {
 .d-flex {
   display: flex;
   justify-content: space-between;
-  column-gap: 1em;
+  column-gap: 20px;
 }
 .d-flex.cols-2 > div {
-  flex: 50% 1 0;
+  flex: calc(50% - 10px) 1 0;
 }
 .r-stack > li {
   width: 100%;
@@ -270,4 +270,24 @@ ul.margin > li + li {
 /* Imagem */
 img {
   border-radius: var(--border-radius);
+}
+
+/* Alert */
+.alert {
+  padding: 0.8em;
+  background: var(--r-link-color-hover);
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 0.7em;
+  border-radius: var(--border-radius);
+}
+.alert > a > kbd {
+  font-size: 0.95em;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Falhar rápido */
+#pipeline-fail-steps {
+  overflow: hidden;
+  max-height: 430px;
+  list-style-position: inside;
 }

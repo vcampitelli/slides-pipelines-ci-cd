@@ -17,7 +17,7 @@
               crossorigin="anonymous" referrerpolicy="no-referrer"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
         <link rel="stylesheet" href="css/app.css">
     </head>
@@ -604,7 +604,7 @@
                         <h1 class="subtitle">Dicas de Performance</h1>
                         <h2>Falhar Rápido</h2>
                         <p><b>Exemplo</b> de <em>pipeline</em>:</p>
-                        <div class="d-flex">
+                        <div class="d-flex h-100">
                             <div>
                                 <pre class="my-0"><code class="yaml" data-trim data-fragment-index="0"
                                            data-line-numbers="|6-7|9-10|12-13|15-18|20-21|23-24|26-27|29-30|32-33|35-36">
@@ -617,7 +617,7 @@
                                             uses: actions/checkout@v4
 
                                           - name: Configurando ambiente
-                                            run: apt-get update && apt-get install jq
+                                            run: apt-get update &amp;&amp; apt-get install jq
 
                                           - name: Instalando dependências de desenvolvimento
                                             run: npm install --production=false
@@ -644,27 +644,27 @@
                                 </code></pre>
                             </div>
                             <div>
-                                <ol class="r-stack h-100">
-                                    <li class="fragment current-visible" data-fragment-index="0">
+                                <ol id="pipeline-fail-steps">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="0">
                                         Checkout do código
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="1">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="1">
                                         Configuração do ambiente
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="2">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="2">
                                         Instalação de dependências de desenvolvimento
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="3">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="3">
                                         Análise estática do código
                                         <ul>
                                             <li><em>Linting</em></li>
                                             <li>Análise de segurança</li>
                                         </ul>
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="4">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="4">
                                         Build de desenvolvimento
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="5">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="5">
                                         Testes
                                         <ul>
                                             <li>Testes de unidade</li>
@@ -672,13 +672,13 @@
                                             <li>Testes End-to-end</li>
                                         </ul>
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="6">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="6">
                                         Instalação de dependências de produção
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="7">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="7">
                                         Build de produção
                                     </li>
-                                    <li class="fragment current-visible" data-fragment-index="8">
+                                    <li class="fragment fade-in-then-semi-out fragment-pipeline-fail-step" data-fragment-index="8">
                                         Deploy
                                     </li>
                                 </ol>
@@ -811,6 +811,48 @@
                                      username: ${{ secrets.RUNNER_REGISTRY_USERNAME }}
                                      password: ${{ secrets.RUNNER_REGISTRY_PASSWORD }}
                         </code></pre>
+                        <a href="https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container"
+                           target="_blank" rel="noopener" class="reference">
+                             Running jobs in a container - GitHub Docs
+                        </a>
+                    </section>
+                    <section>
+                        <h1 class="subtitle">Dicas de Performance</h1>
+                        <h2><em>Runners</em> melhores</h2>
+                        <p>
+                            Se ainda assim sentir que seu <em>workflow</em> está lento, você pode pagar pelos planos
+                            GitHub Team ou GitHub Enterprise Cloud para ter <em>runners</em> maiores ou rodá-los
+                            <a href="https://github.com/actions/runner" target="_blank" rel="noopener">
+                                em sua própria infraestrutura
+                            </a>
+                        </p>
+                        <div class="d-flex cols-2">
+                            <div>
+                                <p class="fs-small text-muted my-0">Caso tenha planos pagos:</p>
+                                <pre><code class="yaml" data-trim data-line-numbers>
+                                    jobs:
+                                      build:
+                                        runs-on:
+                                          group: my-large-runners-group
+                                        steps:
+                                          - ...
+                                </code></pre>
+                            </div>
+                            <div>
+                                <p class="fs-small text-muted my-0">Caso tenha configurado em sua infra:</p>
+                                <pre><code class="yaml" data-trim data-line-numbers>
+                                    jobs:
+                                      build:
+                                        runs-on: self-hosted
+                                        steps:
+                                          - ...
+                                </code></pre>
+                            </div>
+                        </div>
+                        <a href="https://docs.github.com/en/actions/using-jobs/choosing-the-runner-for-a-job"
+                           target="_blank" rel="noopener" class="reference">
+                           Choosing the runner for a job - GitHub Docs
+                        </a>
                     </section>
                 </section> <!-- Dicas de Performance -->
 
@@ -966,13 +1008,15 @@
                         <h2>Permissões do <em>token</em></h2>
                         <p>
                             Todo <em>workflow</em> é executado com um <em>access token</em> para autenticação no
-                            repositório. Dependendo das ações do seu <em>workflow</em>, será preciso permitir alguns
-                            acessos através da configuração <kbd>permissions</kbd>. Nesse caso, ao invés de liberar
-                            acesso a todos os <em>jobs</em>, é possível configurar um a um:
+                            repositório
+                        </p>
+                        <p>
+                            Dependendo das ações do seu <em>workflow</em>, será preciso permitir alguns
+                            acessos através da configuração <kbd>permissions</kbd>:
                         </p>
                         <div class="d-flex cols-2">
                             <div>
-                                <p class="fs-small text-muted my-0">Acesso geral:</p>
+                                <p class="fs-small text-muted my-0">Acesso geral <em>(não recomendado)</em>:</p>
                                 <pre><code class="yaml" data-trim data-line-numbers="|5-6" data-fragment-index="0">
                                     name: "Meu workflow"
                                     on:
@@ -1002,6 +1046,11 @@
                                 </code></pre>
                             </div>
                         </div>
+                        <div class="alert">
+                            Dica: utilize a ação <a href="https://github.com/GitHubSecurityLab/actions-permissions"
+                                target="_blank" rel="noopener"><kbd>GitHubSecurityLab/actions-permissions</kbd></a>
+                            para monitorar e aplicar o privilégio mínimo do <em>token</em>
+                        </div>
                         <a href="https://docs.github.com/en/actions/security-guides/automatic-token-authentication"
                            target="_blank" rel="noopener" class="reference">
                             Automatic token authentication - GitHub Docs
@@ -1014,8 +1063,9 @@
                             Vários serviços (como os provedores de <em>cloud</em>) possuem integrações via
                             <a href="https://openid.net/developers/how-connect-works/" target="_blank"
                                rel="noopener">OpenID Connect</a> <em>(OIDC)</em>, protocolo de autenticação baseado no
-                            <a href="https://oauth.net/2/" target="_blank" rel="noopener">OAuth 2</a>, sem a necessidade
-                            de credenciais como <em>access tokens</em>, garantindo maior segurança e praticidade
+                            <a href="https://oauth.net/2/" target="_blank" rel="noopener">OAuth 2</a>, removendo a
+                            necessidade de usar credenciais como <em>access tokens</em> e garantindo maior segurança e
+                            praticidade
                         </p>
                         <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect"
                            target="_blank" rel="noopener" class="reference">
@@ -1045,7 +1095,7 @@
                                       role-to-assume: ${{ secrets.AWS_ROLE }}
                                       aws-region: ${{ env.AWS_REGION }}
 
-                                  - name: "Sobe no S3"
+                                  - name: "Subindo no S3"
                                     run: aws s3 sync ./dist/ s3://${{ env.AWS_BUCKET_NAME }}/ --delete
                         </code></pre>
                         <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services"
@@ -1063,15 +1113,39 @@
                         <h1>Referências</h1>
                         <ul>
                             <li>
+                                <a href="https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning"
+                                   target="_blank" rel="noopener">
+                                    About code scanning - GitHub Docs
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://dev.to/zenika/gitlab-ci-optimization-15-tips-for-faster-pipelines-55al"
                                    target="_blank" rel="noopener">
                                     GitLab CI Optimization: 15+ Tips for Faster Pipelines
                                 </a>
                             </li>
                             <li>
+                                <a href="https://resources.github.com/learn/pathways/automation/intermediate/manage-and-monitor-workflows-in-github-actions/"
+                                   target="_blank" rel="noopener">
+                                    Manage and monitor workflows in GitHub Actions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/ossf/scorecard"
+                                   target="_blank" rel="noopener">
+                                    OpenSSF Scorecard
+                                </a>
+                            </li>
+                            <li>
                                 <a href="https://cmolina.dev/posts/2023/12/faster-and-cost-effective-github-actions/"
                                    target="_blank" rel="noopener">
                                     Optimizing GitHub Actions: 7 Strategies for Faster and Cost-Effective CI pipelines
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://anchore.com/sbom/sbom-tools-drop-sbom-action-in-github-actions/"
+                                   target="_blank" rel="noopener">
+                                    SBOM Tools: Drop an SBOM GitHub Action into your Workflow
                                 </a>
                             </li>
                             <li>
@@ -1171,6 +1245,41 @@
                     38: 'prev',
                     40: 'next',
                 },
+            });
+            Reveal.on('fragmenthidden', (event) => {
+                const fragments = event.fragments;
+                if (typeof fragments[1] === 'undefined') {
+                    return;
+                }
+                if (fragments[1].classList.contains('fragment-pipeline-fail-step')) {
+                    const $li = fragments[1].previousElementSibling;
+                    if (!$li) {
+                        return;
+                    }
+                    const y = $li.offsetTop - $li.parentNode.offsetTop;
+                    if (y < $li.parentNode.clientHeight + $li.parentNode.scrollTop) {
+                        $li.parentNode.scrollTo({
+                            top: y,
+                            behavior: 'smooth',
+                        });
+                    }
+                }
+            });
+            Reveal.on('fragmentshown', (event) => {
+                const fragments = event.fragments;
+                if (typeof fragments[1] === 'undefined') {
+                    return;
+                }
+                if (fragments[1].classList.contains('fragment-pipeline-fail-step')) {
+                    const $li = fragments[1];
+                    const y = $li.offsetTop - $li.parentNode.offsetTop;
+                    if (y + $li.clientHeight > $li.parentNode.clientHeight) {
+                        $li.parentNode.scrollTo({
+                            top: y,
+                            behavior: 'smooth',
+                        });
+                    }
+                }
             });
         </script>
     </body>
