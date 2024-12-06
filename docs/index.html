@@ -609,8 +609,8 @@
                                 <pre class="my-0"><code class="yaml" data-trim data-fragment-index="0"
                                            data-line-numbers="|6-7|9-10|12-13|15-18|20-21|23-24|26-27|29-30|32-33|35-36">
                                     jobs:
-                                      job1:
-                                        name: Nome do primeiro job
+                                      deploy:
+                                        name: Deploy em produção
                                         runs-on: ubuntu-latest
                                         steps:
                                           - name: Checkout do código
@@ -1075,13 +1075,21 @@
                     <section data-auto-animate>
                         <h1 class="subtitle">Dicas de Segurança</h1>
                         <h2>Usando OIDC</h2>
+                        <p>Como funciona?</p>
+                        <img src="img/oidc.svg" class="inject-svg" alt="Como funciona OIDC">
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="subtitle">Dicas de Segurança</h1>
+                        <h2>Usando OIDC</h2>
                         <p>
-                            Para isso, configure no serviço uma <em>relação de confiança</em>, dizendo que determinados
-                            <em>tokens</em> emitidos pelo GitHub Actions podem ter acesso à sua conta, e configure a
-                            troca do <em>token</em> OIDC em seu <em>workflow</em>
+                            Configure no seu provedor de <em>cloud</em> uma <b>relação de confiança</b>, dizendo que
+                            <em>tokens</em> emitidos pelo GitHub Actions podem ter acesso à sua conta, determine as
+                            permissões que ele pode assumir e configure seu <em>workflow</em>:
                         </p>
-                        <p class="fs-small text-muted my-0">Exemplo com a Amazon Web Services:</p>
-                        <pre><code class="yaml" data-trim data-line-numbers>
+                        <p class="fs-small text-muted my-0" data-id="intro">
+                            Exemplo com a Amazon Web Services <b>sem OIDC</b>:
+                        </p>
+                        <pre data-id="pre"><code class="yaml" data-trim data-line-numbers>
                             jobs:
                               build:
                                 runs-on: ubuntu-latest
@@ -1092,14 +1100,49 @@
                                   - name: "Configurando AWS"
                                     uses: aws-actions/configure-aws-credentials@v4
                                     with:
-                                      role-to-assume: ${{ secrets.AWS_ROLE }}
-                                      aws-region: ${{ env.AWS_REGION }}
+                                      aws-region: ${{ vars.AWS_REGION }}
+                                      aws-access-key-id: ${{ secrets.BACKEND_AWS_ACCESS_KEY_ID }}
+                                      aws-secret-access-key: ${{ secrets.BACKEND_AWS_SECRET_KEY }}
 
                                   - name: "Subindo no S3"
-                                    run: aws s3 sync ./dist/ s3://${{ env.AWS_BUCKET_NAME }}/ --delete
+                                    run: aws s3 sync ./dist/ s3://${{ vars.AWS_BUCKET_NAME }}/ --delete
                         </code></pre>
                         <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services"
-                           target="_blank" rel="noopener" class="reference">
+                           target="_blank" rel="noopener" class="reference" data-id="reference">
+                            Configuring OpenID Connect in Amazon Web Services - GitHub Docs
+                        </a>
+                    </section>
+                    <section data-auto-animate>
+                        <h1 class="subtitle">Dicas de Segurança</h1>
+                        <h2>Usando OIDC</h2>
+                        <p>
+                            Configure no seu provedor de <em>cloud</em> uma <b>relação de confiança</b>, dizendo que
+                            <em>tokens</em> emitidos pelo GitHub Actions podem ter acesso à sua conta, determine as
+                            permissões que ele pode assumir e configure a troca do <em>token</em> OIDC em seu
+                            <em>workflow</em>
+                        </p>
+                        <p class="fs-small text-muted my-0" data-id="intro">
+                            Exemplo com a Amazon Web Services <b>com OIDC</b>:
+                        </p>
+                        <pre data-id="pre"><code class="yaml" data-trim data-line-numbers>
+                            jobs:
+                              build:
+                                runs-on: ubuntu-latest
+                                steps:
+                                  - name: "Checkout do código"
+                                    uses: actions/checkout@v4
+
+                                  - name: "Configurando AWS"
+                                    uses: aws-actions/configure-aws-credentials@v4
+                                    with:
+                                      aws-region: ${{ vars.AWS_REGION }}
+                                      role-to-assume: ${{ secrets.AWS_ROLE }}
+
+                                  - name: "Subindo no S3"
+                                    run: aws s3 sync ./dist/ s3://${{ vars.AWS_BUCKET_NAME }}/ --delete
+                        </code></pre>
+                        <a href="https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services"
+                           target="_blank" rel="noopener" class="reference" data-id="reference">
                             Configuring OpenID Connect in Amazon Web Services - GitHub Docs
                         </a>
                     </section>
@@ -1231,6 +1274,26 @@
         <script src="reveal.js/plugin/highlight/highlight.js"></script>
         <script src="reveal.js/plugin/notes/notes.js"></script>
         <script>
+            /**
+             * Transformando imagens SVG em objetos reais
+             */
+            document.querySelectorAll('img.inject-svg').forEach(($img) => {
+                fetch($img.src).then(response => {
+                    if (!response.ok) {
+                        return;
+                    }
+                    response.text().then(contents => {
+                        const $wrapper = document.createElement('div');
+                        $wrapper.classList.add('svg-wrapper');
+                        if ($img.dataset.id) {
+                            contents = contents.replace('<svg', '<svg data-id="' + encodeURIComponent($img.dataset.id) + '"');
+                        }
+                        $wrapper.innerHTML = contents.replace('<?xml version="1.0" encoding="UTF-8"?>', '');
+                        $img.parentNode.replaceChild($wrapper, $img);
+                    });
+                });
+            });
+
             Reveal.initialize({
                 hash: true,
                 mouseWheel: false,
