@@ -293,3 +293,8 @@ img {
   max-height: 430px;
   list-style-position: inside;
 }
+
+/* SVGs */
+svg {
+  letter-spacing: -0.5px;
+}
